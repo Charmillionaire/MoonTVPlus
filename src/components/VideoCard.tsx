@@ -853,7 +853,7 @@ const VideoCard = forwardRef<VideoCardHandle, VideoCardProps>(
     return (
       <>
         <div
-          className={`group relative w-full rounded-lg bg-transparent transition-all duration-300 ease-in-out hover:scale-[1.05] hover:z-[500] ${
+          className={`group relative w-full rounded-lg glass-card transition-all duration-300 ease-in-out hover:scale-[1.05] hover:z-[500] ${
             isUpcoming ? 'cursor-default' : 'cursor-pointer'
           } ${showUpcomingInfo ? 'scale-[1.05] z-[500]' : ''}`}
           onClick={handleClick}
