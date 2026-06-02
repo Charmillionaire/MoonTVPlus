@@ -79,6 +79,11 @@ html:not(.dark) body {
   background-attachment: fixed;
 }
 
+html.dark body {
+  background: #000000;
+  background-attachment: fixed;
+}
+
 /* 自定义滚动条样式 */
 ::-webkit-scrollbar {
   width: 8px;
