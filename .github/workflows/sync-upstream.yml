@@ -1,0 +1,31 @@
+name: Sync upstream
+
+on:
+  schedule:
+    # 每天北京时间凌晨 3 点（UTC 19:00）自动同步上游
+    - cron: '0 19 * * *'
+  workflow_dispatch:  # 支持网页手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 必须！允许 push 到 fork
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/mtvpls/MoonTVPlus.git
+          git fetch upstream
+
+      - name: Sync upstream to fork
+        run: |
+          git checkout main
+          git merge upstream/main --ff-only 2>/dev/null || \
+            git merge upstream/main --no-edit
+          git push origin main
